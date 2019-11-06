@@ -1,0 +1,81 @@
+Nume, prenume:
+	I)Ursu Dan-Andrei
+	II)Dumitrescu Adrian-Tudor
+
+Problemele intampinate:
+	-
+
+Algoritmul utilizat:
+	1)functia possible_double_cuts:
+	-Parcurg toate subgrafurile grafului curent si le introduc in vectoru
+pdc(possible double cuts) doar pe cele care au un singur fiu. Acestea repre-
+zinta taieturi duble deoarece, fiind fii unici, nu se diferentiaza de parintii
+lor decat printr-o pereche de paranteze;
+	-In mod recursiv apelez functia din fiecare subgraf, aceasta va returna
+toate pdc-urile pornind din subgraful respectiv. Pentru a obtine pdc-urile care
+pornesc din graful curent adaug la inceputul pdc-urilor generate de subgraful
+i indicele i.
+	2)functia double_cuts:
+	-Am luat o copie de tip AEGraph(pg) pe care vom lucra in functie;
+	-Am parcurs vectorul where mergand din subgraf in subgraf in pg pana la
+penultimul element astfel incat in index sa avem nodul unde trebuie sa facem
+double cut;
+	-Am salvat toate subgrafurile si toti atomii ce se afla in nodul unde
+vom efectua double cut pentru a nu le pierde atunci cand vom sterge dubla
+negare;
+	-Stergem double cut-ul;
+	3)functia possible_erasures:
+	-In mod recursiv apelez functia din fiecare subgraf, aceasta va returna
+toate pe-urile (possible erasures) pornind din subgraful respectiv;
+	-Pentru a obtine pe-urile care pornesc din graful curent adaug la ince-
+putul pe-urilor generate de subgraful i indicele i. In cazul in care ma aflu pe
+un nivel impar inseamna ca toti fii grafului curent se afla pe un nivel par,
+deci vor fi adaugati in vectorul pe daca nu reprezinta unicul fiu al grafului;
+	4)functia erasures:
+	-Am luat o copie de tip AEGraph(pg) pe care vom lucra in functie;
+	-Am parcurs vectorul where mergand din subgraf in subgraf in pg pana la
+penultimul element astfel incat in index sa avem nodul unde trebuie sa facem
+stergerea;
+	-Am verificat daca index este atom sau subgraph pentru a putea sa il
+stergem din vectorul respectiv(atoms sau subgraphs);
+	-Index este atom daca e mai mare ca numarul de subgrafuri al nodului
+curent(pg);
+	5)functia possible_deiterations:
+	-Apelez functia get_paths_to din graful curent dand ca argument, pe
+rand, fiecare subgraf si atom. Daca exista un singur fiu direct in caile
+returnate de functia apelata inseamna ca fiul i nu poate fi deiterat (daca
+exista mai multi fii identici se pot deitera unul pe celalalt);
+	-Dupa ce s-a facut modificare prezentata anterior se adauga in vectorul
+pd (possible_deiterations) caile ramase care au fost generate de functia
+get_paths_to;
+	-In mod recursiv apelez functia possible_deiterations din fiecare sub-
+graf, aceasta va returna toate pd-urile pornind din subgraful respectiv. Pentru
+a obtine pd-urile care pornesc din graful curent adaug la inceputul pd-urilor
+generate de subgraful i indicele i.
+	6)functia deiterate:
+	-Am luat o copie de tip AEGraph(pg) pe care vom lucra in functie;
+	-Am parcurs vectorul where mergand din subgraf in subgraf in pg pana la
+penultimul element astfel incat in index sa avem nodul unde trebuie sa facem
+deiterate;
+	-La fel ca in functia erase am verificat daca index este atom sau
+subgraph pentru a putea sa il stergem din vectorul respectiv(atoms sau
+subgraphs);
+	-Index este atom daca e mai mare ca numarul de subgrafuri al nodului
+curent(pg);
+
+Complexitatea temei:
+
+Alte precizari:
+	-functiile le-am impartit astfel:
+		I)Ursu Dan-Andrei a rezolvat toate functiile cu possible:
+possible_double_cuts, possible_erasures, possible_deiterations;
+		II)Dumitrescu Adrian-Tudor a rezolvat toate operatiile:
+double_cut, erase, deiterate;
+	-le-am impartit astfel deoarece am considerat ca asa fiecare student
+intelege cum functioneaza fiecare operatie in parte(double cut, erase,
+deiterate) pastrand totusi o logica proprie asemanatoare pentru fiecare
+functie(toate functiile de operatii se bazeaza pe parcurgere vectorului
+where,in toate functiile possible se creeaza o matrice ce se completeaza);
+	-totodata, nu am avut probleme cu aceasta impartire deoarece functiile
+erau independente(nu aveai nevoie de o functie de la coechipier pentru a o
+completa pe a ta);
